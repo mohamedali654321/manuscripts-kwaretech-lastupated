@@ -1,0 +1,255 @@
+// :host {
+//   display: block;
+
+//   div.background-image-container {
+//     color: white;
+//     position: relative;
+
+//     .background-image > img {
+//       background-color: var(--bs-info);
+//       position: absolute;
+//       z-index: -1;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//       object-position: top;
+//     }
+
+//     .container {
+//       position: relative;
+//       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+
+//       &:before, &:after {
+//         content: '';
+//         display: block;
+//         width: var(--ds-banner-background-gradient-width);
+//         height: 100%;
+//         top: 0;
+//         position: absolute;
+//       }
+
+//       &:before {
+//         background: linear-gradient(to left, var(--ds-banner-text-background), transparent);
+//         left: calc(-1 * var(--ds-banner-background-gradient-width));
+
+//       }
+
+//       &:after {
+//         background: linear-gradient(to right, var(--ds-banner-text-background), transparent);
+//         right: calc(-1 * var(--ds-banner-background-gradient-width));
+//       }
+
+//       background-color: var(--ds-banner-text-background);
+//     }
+
+
+//     small.credits {
+//       a {
+//         color: inherit;
+//       }
+
+//       opacity: 0.3;
+//       position: absolute;
+//       right: var(--bs-spacer);
+//       bottom: 0;
+//     }
+//   }
+
+//   .jumbotron {
+//     background-color: transparent;
+//   }
+
+//   a {
+//     color: var(--ds-home-news-link-color);
+
+//     @include hover {
+//       color: var(--ds-home-news-link-hover-color);
+//     }
+//   }
+// }
+
+
+// :host {
+//   display: block;
+//   margin-top: -1.5rem;
+//   margin-bottom: 50px;
+//   div.background-image {
+//     color: white;
+//     background-color: var(--bs-info);
+//     position: relative;
+//     // background-image: url('https://imamu.edu.sa/_layouts/15/2016/Portal/img/events-bg.jpg');
+//     background-image: url('/assets/dspace/images/المدينة المنورة 1.jpg');
+//       background-size: cover;
+//       height: 453px;
+//       width: 100%;
+//       background-repeat: no-repeat,no-repeat;
+//       background-position: right, left;
+//       background-size: 100% 100%;
+//     // margin-bottom: 100px;
+
+//     .container {
+//       position: relative;
+//       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+//        height: 100%;
+//       // &:before, &:after {
+//       //   content: '';
+//       //   display: block;
+//       //   width: var(--ds-banner-background-gradient-width);
+//       //   height: 100%;
+//       //   top: 0;
+//       //   position: absolute;
+//       // }
+
+//     //   &:before {
+//     //     background: linear-gradient(to left, var(--ds-banner-text-background), transparent);
+//     //     left: calc(-1 * var(--ds-banner-background-gradient-width));
+
+//     //   }
+
+//     //   &:after {
+//     //     background: linear-gradient(to right, var(--ds-banner-text-background), transparent);
+//     //     right: calc(-1 * var(--ds-banner-background-gradient-width));
+//     //   }
+
+//     //   background-color: var(--ds-banner-text-background);
+//     }
+
+
+//     small.credits {
+//       a {
+//         color: inherit;
+//       }
+
+//       opacity: 0.3;
+//       position: absolute;
+//       right: var(--bs-spacer);
+//       bottom: 0;
+//     }
+//   }
+
+//   .jumbotron {
+//     background-color: transparent;
+//   }
+
+//   a {
+//     color: var(--ds-home-news-link-color);
+
+//     @include hover {
+//       color: var(--ds-home-news-link-hover-color);
+//     }
+//   }
+// }
+
+
+
+
+:host {
+  display: block;
+  margin-top: calc(var(--ds-content-spacing) * -1);
+
+  div.background-image {
+    color: white;
+    background-color: var(--bs-info);
+    position: relative;
+    // background-image: url('https://imamu.edu.sa/_layouts/15/2016/Portal/img/events-bg.jpg');
+    // background-image: url('/assets/dspace/images/King-Fahad-National-Library_2473.jpg.png');
+      background-size: cover;
+      height: 600px;
+      width: 100%;
+      background-repeat: no-repeat,no-repeat;
+      background-position: right, left;
+      background-size: 100% 100%;
+    // margin-bottom: 100px;
+    margin-top: -24px;
+
+    .container {
+      position: relative;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+       height: 100%;
+      // &:before, &:after {
+      //   content: '';
+      //   display: block;
+      //   width: var(--ds-banner-background-gradient-width);
+      //   height: 100%;
+      //   top: 0;
+      //   position: absolute;
+      // }
+
+    //   &:before {
+    //     background: linear-gradient(to left, var(--ds-banner-text-background), transparent);
+    //     left: calc(-1 * var(--ds-banner-background-gradient-width));
+
+    //   }
+
+    //   &:after {
+    //     background: linear-gradient(to right, var(--ds-banner-text-background), transparent);
+    //     right: calc(-1 * var(--ds-banner-background-gradient-width));
+    //   }
+
+    //   background-color: var(--ds-banner-text-background);
+    }
+
+
+    small.credits {
+      a {
+        color: inherit;
+      }
+
+      opacity: 0.3;
+      position: absolute;
+      right: var(--bs-spacer);
+      bottom: 0;
+    }
+  }
+
+  .jumbotron {
+    background-color: transparent;
+  }
+
+  a {
+    color: var(--ds-home-news-link-color);
+
+    @include hover {
+      color: var(--ds-home-news-link-hover-color);
+    }
+  }
+}
+
+@media (max-width: 767px){
+
+  div.background-image
+{
+  margin-top: -40px !important;
+}
+}
+
+
+.back-video{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+}
+
+
+// @media screen and (max-width: 768px){
+//   video {
+//     object-fit: inherit !important;
+  
+    
+//   }
+// }
+
+// @media screen and (min-width: 768px){
+//   video {
+//     object-fit: cover !important;
+    
+//   }
+// }
+
+  video {
+    object-fit: cover !important;
+    
+  }

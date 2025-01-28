@@ -1,0 +1,59 @@
+<div class="d-flex">
+    <div *ngIf="showThumbnails" class="col-3 col-md-2">
+        <a *ngIf="linkType !== linkTypes.None" [target]="(linkType === linkTypes.ExternalLink) ? '_blank' : '_self'"
+           [attr.rel]="(linkType === linkTypes.ExternalLink) ? 'noopener noreferrer' : null" class="dont-break-out">
+          <ds-thumbnail [thumbnail]="dso?.thumbnail | async"
+                        [defaultImage]="'assets/images/orgunit-placeholder.svg'"
+                        [alt]="'thumbnail.orgunit.alt'"
+                        [placeholder]="'thumbnail.orgunit.placeholder'">
+          </ds-thumbnail>
+        </a>
+        <span *ngIf="linkType === linkTypes.None" class="dont-break-out">
+          <ds-thumbnail [thumbnail]="dso?.thumbnail | async"
+                        [defaultImage]="'assets/images/orgunit-placeholder.svg'"
+                        [alt]="'thumbnail.orgunit.alt'"
+                        [placeholder]="'thumbnail.orgunit.placeholder'">
+          </ds-thumbnail>
+        </span>
+      </div>
+    <!-- <div class="person-thumbnail pr-2">
+        <ds-themed-thumbnail [thumbnail]="dso?.thumbnail | async" [defaultImage]="'assets/images/orgunit-placeholder.svg'"></ds-themed-thumbnail>
+  </div> -->
+    <div class="flex-grow-1">
+        <!-- <ds-org-unit-input-suggestions *ngIf="useNameVariants" [suggestions]="allSuggestions" [(ngModel)]="selectedName" (clickSuggestion)="select($event)"
+                                       (submitSuggestion)="selectCustom($event)"></ds-org-unit-input-suggestions> -->
+
+      <div  class="lead" [innerHTML]="dsoTitle | kwareTranslate"></div>
+
+      <div *ngIf="dso.allMetadata(['dc.relation.college']).length > 0">
+        <span style="color:#007d65!important ;font-size: 15px;font-weight: 600;" [innerHtml]="firstMetadataValue('dc.relation.college') | kwareTranslate"></span>
+
+      </div>
+
+      <div *ngIf="dso.allMetadata(['organization.chiefLegalName']).length > 0 ">
+        <!-- <span style="color:#007d65!important ;font-size: 15px;font-weight: 600;" [innerHtml]="(virtualMetadataFieldsService.initVirtualProperties(dso,'organization.legalName') | async)"></span> -->
+        <span class="item-abstract card-text publisher-section-admin">
+            <span style="color:#007d65!important ;font-size: 15px;font-weight: 600;" [innerHtml]="firstMetadataValue('organization.chiefLegalName') | kwareTranslate"></span>
+
+          <!-- <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+              [parentItem]="dso"
+              [itemType]="'OrgUnit'"
+              [metadataFields]="['organization.chiefLegalName']"
+              [label]="'relationships.isOrgUnitOf' | translate">
+          </ds-metadata-representation-list> -->
+        </span>
+      </div>
+      
+
+        <span class="text-muted">
+        <span *ngIf="dso.allMetadata('organization.address.addressLocality').length > 0"
+              class="item-list-address-locality">
+                    <span [innerHTML]="firstMetadataValue(['organization.address.addressLocality']) | kwareTranslate"><span [innerHTML]="firstMetadataValue(['organization.address.addressLocality']) | kwareTranslate"></span></span><span *ngIf="dso.allMetadata('organization.address.addressCountry').length > 0">, </span>
+        </span>
+        <span *ngIf="dso.allMetadata('organization.address.addressCountry').length > 0"
+              class="item-list-address-country">
+                    <span [innerHTML]="firstMetadataValue(['organization.address.addressCountry']) | kwareTranslate"><span [innerHTML]="firstMetadataValue(['organization.address.addressCountry']) | kwareTranslate"></span></span>
+        </span>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+ds-selectable-list-item-control {
+  z-index: 1
+}
+
+.top-border:not(:first-child){
+  border-top: 1px solid rgba(34,36,38,.15);
+  margin: 0;
+  padding: 1.5em 0;
+}

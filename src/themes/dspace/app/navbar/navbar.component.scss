@@ -1,0 +1,58 @@
+:host {
+
+    @media (max-width: 768px) {
+
+
+        ::ng-deep ds-link-menu-item a {
+          color: #000 !important;
+        }
+        ::ng-deep  a {
+          color: #000 ;
+        }
+        #main-site-header-container{
+          min-height: 120px;
+        }
+        .flex-wrap{
+          flex-wrap: nowrap !important;
+        }
+      
+        ::ng-deep .scrolledY {
+          
+          // background-color: #007d65 !important;
+          // transition: all .4s ease-in-out;
+          // height: 67px !important;
+          // position: fixed !important;
+          // transition: all .4s ease-in-out;
+          // width: 100%;
+          // z-index: 999;
+    
+          #main-site-header-container{
+            min-height: 90px;
+          }
+      
+          #mobile-navbar-wrapper{
+            background-color: #000 !important;
+          }
+      
+           img {
+            display: block;
+            // position: absolute;
+            top: 15px !important;
+            margin-top: -15px;
+            width: 85px !important; //NU-edit
+            //  height: 80px; //NU-edit
+      
+      
+      
+      
+          }
+      
+      
+      
+        }
+      
+    
+    
+    }
+
+}

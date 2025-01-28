@@ -1,0 +1,55 @@
+<!-- <ng-template #descTemplate>
+  <span class="text-muted">
+      <span *ngIf="mdRepresentation.allMetadata(['person.jobTitle']).length > 0"
+            class="item-list-job-title">
+              <span *ngFor="let value of mdRepresentation.allMetadataValues(['person.jobTitle']); let last=last;">
+                  <span [innerHTML]="value"><span [innerHTML]="value"></span></span>
+              </span>
+      </span>
+  </span>
+</ng-template>
+<ds-truncatable [id]="mdRepresentation.id">
+  <a [routerLink]="[itemPageRoute]"
+     [innerHTML]="mdRepresentation.getValue()"
+     [ngbTooltip]="mdRepresentation.allMetadata(['person.jobTitle']).length > 0 ? descTemplate : null"></a>
+</ds-truncatable> -->
+ <!-- kware start edit -- issue.8.0.021
+- Metadata Visualization (representation) for all new entities 
+-->
+<ng-template #descTemplate>
+  <span class="text-muted">
+      <span *ngIf="mdRepresentation.allMetadata(['person.jobTitle']).length > 0"
+            class="item-list-job-title">
+              <span *ngFor="let value of mdRepresentation.allMetadataValues(['person.jobTitle']); let last=last;">
+                  <span [innerHTML]="value | kwareTranslate"><span [innerHTML]="value | kwareTranslate"></span></span>
+              </span>
+      </span>
+  </span>
+</ng-template>
+<ds-truncatable [id]="mdRepresentation.id">
+  <div [ngClass]="{'d-flex':(mdRepresentation.hasMetadata('relation.isPublicationOfAuthor') || mdRepresentation.hasMetadata('relation.isPublicationOfAdvisors') ),'author-content':(mdRepresentation.hasMetadata('relation.isPublicationOfAuthor') || mdRepresentation.hasMetadata('relation.isPublicationOfPerson') || mdRepresentation.hasMetadata('relation.isPublicationOfAdvisors'))}" [ngStyle]="{'gap': mdRepresentation.hasMetadata('relation.isPublicationOfAuthor') || mdRepresentation.hasMetadata('relation.isPublicationOfAdvisors') ? '5px' : '0'}" >
+    <div *ngIf="mdRepresentation.hasMetadata('relation.isPublicationOfAuthor')">
+      <i class="fa-regular fa-user"></i>
+    </div>
+    <div *ngIf="mdRepresentation.hasMetadata('relation.isPublicationOfAdvisors') && !isPublication">
+      <i class="fa-solid fa-user-tie"></i>
+    </div>
+    <div>
+      <a [routerLink]="[itemPageRoute]"
+
+      [ngbTooltip]="mdRepresentation.allMetadata(['person.jobTitle']).length > 0 && isPublication ? (descTemplate | kwareTranslate ) : null">
+      <!-- {{convertComma(((mdRepresentation.getValue()?.split(",")[0] | kwareTranslate) + ',' +  (mdRepresentation.getValue()?.split(",")[1] | kwareTranslate)).split(',undefined')[0]).split(' null')[0]}} -->
+      {{convertComma(dsoNameService.getName(mdRepresentation).split(',undefined')[0]).split(' null')[0]}}
+
+      <!-- {{convertComma(mdRepresentation.getValue())}} -->
+ 
+     </a>
+     <a *ngIf="mdRepresentation.hasMetadata('person.identifier.orcid')" href="https://sandbox.orcid.org/{{mdRepresentation.firstMetadataValue('person.identifier.orcid')}}"><img style="width: 22px;    margin-right: 10px;" _ngcontent-dspace-angular-c659="" placement="top" alt="orcid-logo" src="/assets/images/orcid.logo.icon.svg" class="orcid-icon ng-star-inserted"></a>
+ 
+    </div>
+  </div>
+
+
+</ds-truncatable>
+
+<!-- kware end edit -- issue.8.0.021 -->

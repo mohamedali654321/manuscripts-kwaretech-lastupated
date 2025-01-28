@@ -1,0 +1,42 @@
+<section class="comcol-page-browse-section">
+  <div class="browse-by-metadata w-100">
+    <ds-browse-by *ngIf="(loading$ | async) !== true && !(isBrowseCategories | async)" class="col-xs-12 w-100"
+                         title="{{'browse.title' | translate:{
+                           field: 'browse.metadata.' + browseId | translate,
+                           startsWith: (startsWith)? ('browse.startsWith' | translate: { startsWith: '&quot;' + startsWith + '&quot;' }) : '',
+                           value: (value)? '&quot;' + (browseId === 'entityType' ? (getEntity(value) | translate):(browseId === 'rights' ? (getRights(value) | translate : {default: value | kwareTranslate | translate}):(value | kwareTranslate)) )+ '&quot;': ''
+                          } }}"
+                         [displayTitle]="displayTitle"
+                         [objects$]="(items$ !== undefined)? items$ : browseEntries$"
+                         [paginationConfig]="(currentPagination$ |async)"
+                         [sortConfig]="(currentSort$ |async)"
+                         [type]="startsWithType"
+                         [startsWithOptions]="startsWithOptions"
+                         (prev)="goPrev()"
+                         (next)="goNext()">
+    </ds-browse-by>
+
+
+
+    <div *ngIf="(isBrowseCategories | async)">
+      <h3 >{{'search.title' | translate:{
+        field: 'browse.metadata.' + browseId | translate,
+        startsWith: (startsWith)? ('browse.startsWith' | translate: { startsWith: '&quot;' + startsWith + '&quot;' }) : '',
+        value: (value)? '&quot;' + (browseId === 'entityType' ? (getEntity(value) | translate):(browseId === 'rights' ? (getRights(value) | translate):(value | kwareTranslate)) )+ '&quot;': ''
+      } }}</h3>
+      <br>
+      <ds-configuration-search-page
+      [fixedFilterQuery]="(valuePart | async)? 'f.'+(filterPart | async)+'='+(valuePart | async)+',query' : fixedFilter"
+      
+      [configuration]="configuration"
+      [searchEnabled]="searchEnabled"
+      [sideBarWidth]="sideBarWidth"
+      [showCsvExport]="true">
+    </ds-configuration-search-page>
+  </div>
+
+
+    <ds-loading *ngIf="loading$ | async"
+                       message="{{'loading.browse-by-page' | translate}}"></ds-loading>
+  </div>
+</section>

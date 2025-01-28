@@ -1,0 +1,35 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(value)"
+      [action]="action" (keydown)="onKeydown($event)"
+      (keydown.arrowdown)="shiftFocusDown($event)"
+      (keydown.arrowup)="shiftFocusUp($event)" (keydown.esc)="close()"
+      (dsClickOutside)="close();">
+  <div class="form-group mb-0">
+    <label *ngIf="label; else searchInput" class="mb-0 w-100">
+      <span class="font-weight-bold">
+        {{label | kwareTranslate}}
+      </span>
+      <ng-container *ngTemplateOutlet="searchInput"></ng-container>
+    </label>
+  </div>
+  <ng-template #searchInput>
+    <input #inputField type="text" [(ngModel)]="value" [name]="name"
+           class="form-control suggestion_input"
+           [ngClass]="{'is-invalid': !valid}"
+           [dsDebounce]="debounceTime" (onDebounce)="find($event)"
+           [placeholder]="placeholder"
+           [ngModelOptions]="{standalone: true}" autocomplete="on"
+    />
+  </ng-template>
+  <button class="sr-only" type="submit">
+    {{'search.filters.search.submit' | translate}}
+  </button>
+  <div class="autocomplete dropdown-menu" [ngClass]="{'show': (show | async) && isNotEmpty(suggestions)}">
+    <div class="dropdown-list">
+      <div *ngFor="let suggestionOption of suggestions">
+        <a href="javascript:void(0);" class="d-block dropdown-item"  (click)="onClickSuggestion(suggestionOption)" #suggestion>
+          <span [innerHTML]="locale?(((suggestionOption.displayValue?.split(',')[0] | kwareTranslate) + ',' +  (suggestionOption.displayValue?.split(',')[1] | kwareTranslate)).split(',undefined')[0] | KwareCommaConvert) : (displayValueEn(suggestionOption.displayValue,name))"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</form>

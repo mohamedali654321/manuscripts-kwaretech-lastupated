@@ -1,0 +1,35 @@
+<ds-home-coar></ds-home-coar>
+<ds-home-news></ds-home-news>
+<ds-configuration-search-page *ngIf="showDiscoverFilters"
+                              [sideBarWidth]="3"
+                              [showViewModes]="false"
+                              [searchEnabled]="false"
+                              [inPlaceSearch]="false"
+                              [showScopeSelector]="false">
+  <ng-container searchContentTop *ngTemplateOutlet="homeContent"></ng-container>
+</ds-configuration-search-page>
+<div *ngIf="!showDiscoverFilters" class="container">
+  <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+</div>
+<ds-suggestions-popup></ds-suggestions-popup>
+
+<ng-template #homeContent>
+  <ng-container *ngIf="(site$ | async) as site">
+    <ds-view-tracker [object]="site"></ds-view-tracker>
+  </ng-container>
+   <!-- kware start edit -- issue.8.0.025
+- home news customization -->
+
+  <!-- <ds-search-form [inPlaceSearch]="false"
+                         [searchPlaceholder]="'home.search-form.placeholder' | translate">
+  </ds-search-form> -->
+
+  <!-- kware end edit -- issue.8.0.025 -->
+  <!-- <ds-top-level-community-list></ds-top-level-community-list> -->
+  <ds-browse-categories></ds-browse-categories>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <ds-top-section style="margin-bottom: 120px;" [siteId]="(site$ | async).id" ></ds-top-section>
+</ng-template>

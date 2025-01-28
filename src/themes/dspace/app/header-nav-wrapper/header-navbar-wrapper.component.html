@@ -1,0 +1,11 @@
+<div style="z-index: 9999;" *ngIf="lang" class="ribbon-1 left">{{'nav.demo.site' | translate}}</div>
+<div style="z-index: 9999;" *ngIf="!lang" class="ribbon-1 right">{{'nav.demo.site' | translate}}</div>
+<div id="header-navbar-wrapper" style="max-width: -webkit-fill-available !important;max-width: -moz-available !important;" [ngClass]="{'scrolledY': ((handleScroll | async))}"><!-- [class.open]="!(isNavBarCollapsed$ | async)" -->
+  <ds-header></ds-header>
+  <!-- Collapsible navbar (mobile only) -->
+  <div *ngIf="(isMobile$ | async)" id="mobile-navbar-wrapper" [@slideMobileNav]="(isNavBarCollapsed$ | async) ? 'collapsed' : 'expanded'">
+    <nav class="px-3" id="collapsible-mobile-navbar" [attr.aria-hidden]="(isNavBarCollapsed$ | async)" [attr.aria-label]="'nav.main.description' | translate">
+      <ds-navbar></ds-navbar>
+    </nav>
+  </div>
+</div>
