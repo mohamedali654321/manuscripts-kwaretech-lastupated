@@ -24,6 +24,7 @@ import { ThemedTypeBadgeComponent } from 'src/app/shared/object-collection/share
 import { PublictaionCountComponent } from 'src/app/shared/publictaion-count/publictaion-count.component';
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
 import { ViewStatisticsComponent } from 'src/app/shared/view-statistics/view-statistics.component';
+import { VersionsCounterComponent } from 'src/app/shared/versions-counter/versions-counter.component';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement, Context.Any, 'custom')
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement, Context.Any, 'custom')
@@ -34,7 +35,7 @@ import { ViewStatisticsComponent } from 'src/app/shared/view-statistics/view-sta
   // templateUrl: './item-search-result-list-element.component.html',
   templateUrl: '../../../../../../../../../app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component.html',
   standalone: true,
-  imports: [TruncatableComponent, NgIf, RouterLink, ThemedThumbnailComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule,NgClass,KwareTranslatePipe,NgStyle,ViewStatisticsComponent,PublictaionCountComponent,ThemedMetadataRepresentationListComponent,ThemedTypeBadgeComponent],
+  imports: [TruncatableComponent, NgIf, RouterLink, ThemedThumbnailComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule,NgClass,KwareTranslatePipe,NgStyle,ViewStatisticsComponent,PublictaionCountComponent,ThemedMetadataRepresentationListComponent,ThemedTypeBadgeComponent,VersionsCounterComponent],
 
 })
 export class ItemSearchResultListElementComponent extends BaseComponent {

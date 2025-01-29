@@ -27,6 +27,7 @@ import { PublictaionCountComponent } from 'src/app/shared/publictaion-count/publ
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
 import { ViewStatisticsComponent } from 'src/app/shared/view-statistics/view-statistics.component';
 import { followLink } from 'src/app/shared/utils/follow-link-config.model';
+import { VersionsCounterComponent } from "../../../../../versions-counter/versions-counter.component";
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -35,7 +36,7 @@ import { followLink } from 'src/app/shared/utils/follow-link-config.model';
   styleUrls: ['./item-search-result-list-element.component.scss'],
   templateUrl: './item-search-result-list-element.component.html',
   standalone: true,
-  imports: [TruncatableComponent, NgIf,NgFor, RouterLink, ThemedThumbnailComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule,NgClass,KwareTranslatePipe,NgStyle,ViewStatisticsComponent,PublictaionCountComponent,ThemedMetadataRepresentationListComponent,ThemedTypeBadgeComponent],
+  imports: [TruncatableComponent, NgIf, NgFor, RouterLink, ThemedThumbnailComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule, NgClass, KwareTranslatePipe, NgStyle, ViewStatisticsComponent, PublictaionCountComponent, ThemedMetadataRepresentationListComponent, ThemedTypeBadgeComponent, VersionsCounterComponent],
 })
 /**
  * The component for displaying a list element for an item search result of the type Publication
@@ -51,6 +52,8 @@ export class ItemSearchResultListElementComponent extends SearchResultListElemen
     this.showThumbnails = this.showThumbnails ?? this.appConfig.browseBy.showThumbnails;
     this.itemPageRoute = getItemPageRoute(this.dso);
     this.linkService.resolveLink<Item>(this.dso, followLink('thumbnail')); //kware-edit
+    this.linkService.resolveLink<Item>(this.dso, followLink('version')); //kware-edit
+    this.linkService.resolveLink<Item>(this.dso, followLink('relationships')); 
   }
 
      // kware edit

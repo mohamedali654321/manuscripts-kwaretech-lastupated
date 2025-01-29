@@ -152,6 +152,9 @@ export class DSONameService {
     Era: (dso: DSpaceObject): string => {
       return this.localeService.getStringByLocale(this.firstMetadataValueByLanguage(dso,'era.title'));
     },
+    Group: (dso: DSpaceObject): string => {
+      return this.localeService.getStringByLocale(dso.firstMetadataValue('dc.title.group'));
+    },
     Default: (dso: DSpaceObject): string => {
       // If object doesn't have dc.title metadata use name property
              // kware-edit keywords end
@@ -290,6 +293,9 @@ export class DSONameService {
     }
     else if (entityType === 'Era') {
       return this.localeService.getStringByLocale(this.firstMetadataValue(object, dso, 'era.title') || this.translateService.instant('dso.name.untitled'));
+    }
+    else if (entityType === 'Group') {
+      return this.localeService.getStringByLocale(this.firstMetadataValue(object, dso, 'dc.title.group') || this.translateService.instant('dso.name.untitled'));
     }
     // return this.firstMetadataValue(object, dso, 'dc.title') || dso.name || this.translateService.instant('dso.name.untitled');
      // If object doesn't have dc.title metadata use name property

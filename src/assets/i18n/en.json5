@@ -10103,7 +10103,7 @@
 
 'statistics.label.views':'Views',
 
-"search.title": "Comprehensive research into the scope of  {{ collection }}  {{ field }} {{ value }}",
+"search.title": "Comprehensive research into the scope of  {{ field }} {{ value }}",
 
 
  'query.filter.jobTitle':'Job Title',

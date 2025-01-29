@@ -83,7 +83,7 @@ export class ItemVersionsNoticeComponent implements OnInit {
    * @type {AlertType}
    */
   public AlertTypeEnum = AlertType;
-
+  notice:string;
   constructor(private versionHistoryService: VersionHistoryDataService) {
   }
 
@@ -91,6 +91,8 @@ export class ItemVersionsNoticeComponent implements OnInit {
    * Initialize the component's observables
    */
   ngOnInit(): void {
+    this.notice= 'item.version.notice.'+ this.item.firstMetadataValue('dspace.entity.type').toLocaleLowerCase();
+
     if (hasValue(this.item.version)) {
       this.versionRD$ = this.item.version;
       this.versionHistoryRD$ = this.versionRD$.pipe(
@@ -127,6 +129,9 @@ export class ItemVersionsNoticeComponent implements OnInit {
     }
   }
 
+  goToPart(){
+    document.getElementById("versionArea").scrollIntoView({behavior: "smooth"})
+    }
   /**
    * Get the item page url
    * @param item The item for which the url is requested

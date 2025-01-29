@@ -11070,7 +11070,7 @@
 'statistics.label.views':'المشاهدات',
   
 
-   "search.title": "البحث الشامل في نطاق  {{ collection }}  {{ field }} {{ value }}",
+   "search.title": "البحث الشامل في نطاق {{ field }} {{ value }}",
 
  'query.filter.jobTitle':'المسمي الوظيفي',
  'query.filter.nationality':'الجنسية',

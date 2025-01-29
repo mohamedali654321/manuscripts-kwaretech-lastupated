@@ -193,12 +193,26 @@ import { SubjectGridElementComponent } from 'src/app/entity-groups/research-enti
 import { SubjectSiteListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/subject/subject-list-element.component';
 import { SubjectSidebarSearchListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/sidebar-search-list-elements/subject/subject-sidebar-search-list-element.component';
 import { SubjectSearchResultListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/search-result-list-elements/subject/subject-search-result-list-element.component';
+import { GroupComponent } from 'src/app/entity-groups/research-entities/item-pages/group/group.component';
+import { GroupItemMetadataListElementComponent } from 'src/app/entity-groups/research-entities/metadata-representations/group/group-item-metadata-list-element.component';
+import { GroupGridElementComponent } from 'src/app/entity-groups/research-entities/item-grid-elements/group/group-grid-element.component';
+import { GroupSearchResultGridElementComponent } from 'src/app/entity-groups/research-entities/item-grid-elements/search-result-grid-elements/group/group-search-result-grid-element.component';
+import { GroupSidebarSearchListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/sidebar-search-list-elements/group/group-sidebar-search-list-element.component';
+import { GroupListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/group/group-list-element.component';
+import { GroupSearchResultListElementComponent } from 'src/app/entity-groups/research-entities/item-list-elements/search-result-list-elements/group/group-search-result-list-element.component';
 
 
 
 
 // kware end edit -- issue.8.0.021
 const ENTRY_COMPONENTS = [
+  GroupComponent,
+  GroupItemMetadataListElementComponent,
+  GroupGridElementComponent,
+  GroupSearchResultGridElementComponent,
+  GroupSidebarSearchListElementComponent,
+  GroupListElementComponent,
+  GroupSearchResultListElementComponent,
   SubjectComponent,
   SubjectItemMetadataListElementComponent,
   SubjectSearchResultGridElementComponent,

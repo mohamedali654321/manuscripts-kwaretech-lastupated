@@ -4238,3 +4238,28 @@ gap: 30px !important;
   background-color: #907d4f !important;
   border-color: #907d4f !important;
 }
+
+
+::ng-deep html[dir="rtl"]{
+  ds-group-search-result-list-element{
+    ds-badges{
+      .group-icons{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+      }
+    }
+  }
+
+  ds-group-search-result-grid-element{
+    ds-badges{
+      .group-icons{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+      }
+    }
+  }
+}
+
+

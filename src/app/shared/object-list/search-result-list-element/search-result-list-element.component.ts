@@ -52,6 +52,7 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
    localeEn: boolean;
    arabicLang: boolean;
    englishLang: boolean;
+   isGroupEntity:boolean=false;
 
   public constructor(protected truncatableService: TruncatableService,
                      public dsoNameService: DSONameService,
@@ -65,9 +66,11 @@ export class SearchResultListElementComponent<T extends SearchResult<K>, K exten
    */
   ngOnInit(): void {
     if (hasValue(this.object)) {
+
       this.dso = this.object.indexableObject;
-      this.dsoTitle = this.dsoNameService.getHitHighlights(this.object, this.dso);
+      this.dsoTitle = this.dsoNameService.getName(this.dso);
     }
+    this.isGroupEntity = document.URL.includes('group') ? true : false;
 
          // this.keywords=this.dso.allMetadataValues('dc.subject').slice(0,3); //kwar-edit
          let  arabic = /[\u0600-\u06FF]/;

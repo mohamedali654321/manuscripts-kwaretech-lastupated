@@ -63,13 +63,18 @@ import { followLink } from '../../shared/utils/follow-link-config.model';
 import { VarDirective } from '../../shared/utils/var.directive';
 import { getItemPageRoute } from '../item-page-routing-paths';
 import { ItemVersionsRowElementVersionComponent } from './item-versions-row-element-version/item-versions-row-element-version.component';
+import { ErrorComponent } from "../../shared/error/error.component";
+import { ListableObjectComponentLoaderComponent } from "../../shared/object-collection/shared/listable-object/listable-object-component-loader.component";
+import { ViewMode } from 'src/app/core/shared/view-mode.model';
+import { ThemedLoadingComponent } from "../../shared/loading/themed-loading.component";
+import { BrowserOnlyPipe } from "../../shared/utils/browser-only.pipe";
 
 @Component({
   selector: 'ds-item-versions',
   templateUrl: './item-versions.component.html',
   styleUrls: ['./item-versions.component.scss'],
   standalone: true,
-  imports: [VarDirective, NgIf, AlertComponent, PaginationComponent, NgFor, RouterLink, NgClass, FormsModule, AsyncPipe, DatePipe, TranslateModule, ItemVersionsRowElementVersionComponent],
+  imports: [VarDirective, NgIf, AlertComponent, PaginationComponent, NgFor, RouterLink, NgClass, FormsModule, AsyncPipe, DatePipe, TranslateModule, ItemVersionsRowElementVersionComponent, ErrorComponent, ListableObjectComponentLoaderComponent, ThemedLoadingComponent, BrowserOnlyPipe],
 })
 
 /**
@@ -188,6 +193,23 @@ export class ItemVersionsComponent implements OnDestroy, OnInit {
 
   canCreateVersion$: Observable<boolean>;
   createVersionTitle$: Observable<string>;
+
+  
+  itemsIds = [];
+  itemsIds$ = new BehaviorSubject<any[]>([]);
+  data = new BehaviorSubject<any[]>([]);
+  itemsRD$ =new BehaviorSubject<any[]>([]);
+
+  itemRD$: Observable<RemoteData<PaginatedList<Item>>>;
+
+  allVersionsRd$ = new BehaviorSubject<any[]>([]);
+
+  viewMode = ViewMode.GridElement;
+
+  @Input() showViewModes = true; //kware-edit
+  @Input() viewModeList: ViewMode[]; //kware-edit
+  itemID:string
+  notice:string;
 
   constructor(private versionHistoryService: VersionHistoryDataService,
               private versionService: VersionDataService,
@@ -308,11 +330,16 @@ export class ItemVersionsComponent implements OnDestroy, OnInit {
     combineLatest([versionHistory$, currentPagination]).pipe(
       switchMap(([versionHistory, options]: [VersionHistory, PaginationComponentOptions]) => {
         return this.versionHistoryService.getVersions(versionHistory.id,
-          new PaginatedSearchOptions({ pagination: Object.assign({}, options, { currentPage: options.currentPage }) }),
+          new PaginatedSearchOptions({pagination: Object.assign({}, options, {currentPage: options.currentPage})}),
           false, true, followLink('item'), followLink('eperson'));
       }),
       getFirstCompletedRemoteData(),
     ).subscribe((res: RemoteData<PaginatedList<Version>>) => {
+      res.payload.page.forEach((page, index) => {
+        page.item.pipe(getFirstSucceededRemoteDataPayload()).subscribe((data) => {
+        this.itemsIds$.next(this.itemsIds$.getValue().concat([data]))
+        })
+      })
       this.versionsRD$.next(res);
     });
   }
@@ -328,6 +355,9 @@ export class ItemVersionsComponent implements OnDestroy, OnInit {
    * Initialize all observables
    */
   ngOnInit(): void {
+    this.itemID=this.item.uuid;
+    this.notice= 'item.version.history.selected.alert.'+ this.item.firstMetadataValue('dspace.entity.type').toLocaleLowerCase();
+
     if (hasValue(this.item.version)) {
       this.versionRD$ = this.item.version;
       this.versionHistoryRD$ = this.versionRD$.pipe(
@@ -366,6 +396,17 @@ export class ItemVersionsComponent implements OnDestroy, OnInit {
       );
     }
   }
+
+  removeCurrentItem(arr):any{
+    var lists = arr.filter(x => {
+      return x.uuid != this.itemID;
+    })
+    return lists
+  }
+  removeDuplicates(arr) {
+    return arr.filter((item,
+        index) => arr.indexOf(item) === index);
+}
 
   ngOnDestroy(): void {
     this.cleanupSubscribes();

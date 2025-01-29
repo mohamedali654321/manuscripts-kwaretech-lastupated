@@ -63,7 +63,7 @@ export class KwareCitationComponent {
         //      family: this.localeService.getStringByLocale((((this.object.firstMetadataValue('dc.contributor.author')?.split(",")[0]))?.split(',undefined')[0])?.split(' null')[0])
         //    }
         //  ],
-         issued: { "date-parts": [this.object.firstMetadataValue('dc.date.issued').split(/[- :]/)?.map(Number)] },
+         issued: { "date-parts": [this.object.firstMetadataValue('dc.date.issued') || this.object.firstMetadataValue('dc.date.copy')?.split(/[- :]/)?.map(Number)] },
          "container-title": this.convertComma(this.localeService.getStringByLocale(this.object.firstMetadataValue('journal.title'))) ,
          volume: this.convertComma(this.localeService.getStringByLocale(this.object.firstMetadataValue('journalvolume.identifier.name'))) ,
          issue: this.convertComma(this.localeService.getStringByLocale(this.object.firstMetadataValue('publicationissue.title'))) ,

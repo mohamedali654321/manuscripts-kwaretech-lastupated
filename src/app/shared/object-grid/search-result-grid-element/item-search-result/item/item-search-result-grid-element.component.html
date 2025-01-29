@@ -2,6 +2,28 @@
   <!-- <div *ngIf="(dso?.version | async)?.payload?.version !== null">
     <div  class="ribbon-2">{{('search.results.edition' | translate)+" "+(stringifyNumber((dso?.version | async)?.payload?.version))}}</div>
   </div> -->
+  <div class="d-flex">
+
+    <div  *ngIf="dso.firstMetadataValue('dc.relation.holding') ||  (dso?.version | async)?.payload?.version !== null">
+      <div [ngStyle]="{'background-color':((dso?.version | async)?.payload?.version !== null && versionId === dso.id) ? 'red':'#907d4f' }" [attr.title]="(versionId === dso.id ? ('search.results.current.edition' | translate): ('item.page.holdingLibrary' | translate))"  style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 91%;"  class="ribbon-2">{{dso.firstMetadataValue('dc.relation.holding') | kwareTranslate}}</div>
+   
+    </div>
+
+
+    <!-- <div *ngIf="dso.hasMetadata('dc.title.group')" class="ribbon">
+      <div [attr.title]="('item.search.part.group' | translate)" class="content"><img style="width: 25px;" src="assets/images/4059130.png"></div>
+    </div> -->
+    <div *ngIf="!(isSimpleView)" class="ribbon">
+      <div  class="content"><ds-versions-counter [item]="dso"  ></ds-versions-counter></div>
+    </div>
+  </div>
+  <div *ngIf="dso.hasMetadata('dc.description.ownership') && (dso.firstMetadataValue('dc.description.ownership').includes('Original'))"  class="ribbon-img">
+    <div [attr.title]="'item.search.original' | translate"  class="content-img"><img style="width: 100px;" src="assets/images/7.png"></div>
+  </div>
+  <div class="position-absolute ml-1">
+      <ng-content></ng-content>
+  </div>
+
   <div class="position-absolute ml-1">
       <ng-content></ng-content>
   </div>
@@ -23,7 +45,7 @@
   <div class="card-body"[ngClass]="{'fixed-height':(isCollapsed() | async)}">
     <div class="d-flex">
       <div class="label_dage" >
-        <span class="badge badge-info" [attr.title]="'item.search.publishDate' | translate" style="background-color: #6aa3d5 !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('dc.date.issued') || dso.hasMetadata('dc.date.issuedhijri')" >{{firstMetadataValue('dc.date.issued') ? firstMetadataValue('dc.date.issued') : firstMetadataValue('dc.date.issuedhijri') }}</span>
+        <span class="badge badge-info" [attr.title]="'item.search.publishDate' | translate" style="background-color: #6aa3d5 !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('dc.date.issued') || dso.hasMetadata('dc.date.issuedhijri')" >{{firstMetadataValue('dc.date.issued') ? (firstMetadataValue('dc.date.issued') | kwareTranslate) : (firstMetadataValue('dc.date.issuedhijri')  | kwareTranslate) }}</span>
 
         <!-- <ds-type-badge  *ngIf="showLabel" [object]="dso"></ds-type-badge> -->
         <span class="badge badge-info" style="background-color: #007d65  !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('dc.type')" >{{firstMetadataValue('dc.type') | kwareTranslate}}</span>
@@ -45,7 +67,8 @@
 
                </h4>
               -->
-              <h4 [ngStyle]="{'gap': localeEn ? '10px' : '0px'}" class="card-title d-flex " >
+              <h4 [ngStyle]="{'gap': localeEn ? '10px' : '0px'}" class="card-title d-flex "  style="justify-content: space-between;">
+
                 <div>
                   <a [routerLink]="[itemPageRoute]">{{(dsoTitle + (versionId === dso.id ? '*': '')) | kwareTranslate}}</a>
 
@@ -54,7 +77,9 @@
                   <a *ngIf="dso.hasMetadata('dc.identifier.doi')" href="{{firstMetadataValue('dc.identifier.doi')}}"><img style="width: 22px;    margin-right: 10px;" _ngcontent-dspace-angular-c659="" placement="top" alt="orcid-logo" src="/assets/images/DOI_logo.svg.png" class="orcid-icon ng-star-inserted"></a>
 
                 </div>
-
+          <div *ngIf="dso.hasMetadata('dc.title.group')" >
+            <div [attr.title]="('item.search.part.group' | translate) " ><img style="width: 25px;" src="assets/images/4059130.png"></div>
+          </div>
                </h4>
           </ds-truncatable-part>
 
@@ -112,6 +137,20 @@
             <span style="font-size: 15px;"  [innerHtml]="(localeEn && firstMetadataValue('publicationissue.title'))? (firstMetadataValue('publicationissue.title') | kwareTranslate): (firstMetadataValue('publicationissue.title') | kwareTranslate)"></span>
       
           </ds-truncatable-part>
+
+          
+          <ds-truncatable-part *ngIf=" dso.hasMetadata('dc.contributor.copier') "   [id]="dso.id" [minLines]="1">
+
+            <p class="item-authors card-text text-muted">
+              <span *ngFor="let advisor of dso.allMetadataValues('dc.contributor.copier');let last=last;">
+                <!-- <span ><i class="fa-regular fa-user">&nbsp;</i>{{convertComma((author | kwareTranslate))}}</span> -->
+                <span [attr.title]="'item.search.copier' | translate"><i class="fa-solid fa-user-tie">&nbsp;</i>{{convertComma((advisor | kwareTranslate))}}</span>
+  
+                <span *ngIf="!last">&nbsp;&nbsp;</span>
+            </span>
+            </p>
+          </ds-truncatable-part>
+
 
           <!-- kware-edit keywords show -->
 

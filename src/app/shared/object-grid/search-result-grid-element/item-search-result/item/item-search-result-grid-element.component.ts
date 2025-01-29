@@ -32,6 +32,7 @@ import { ThemedTypeBadgeComponent } from 'src/app/shared/object-collection/share
 import { PublictaionCountComponent } from 'src/app/shared/publictaion-count/publictaion-count.component';
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
 import { ViewStatisticsComponent } from 'src/app/shared/view-statistics/view-statistics.component';
+import { VersionsCounterComponent } from 'src/app/shared/versions-counter/versions-counter.component';
 
 @listableObjectComponent('PublicationSearchResult', ViewMode.GridElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.GridElement)
@@ -41,7 +42,7 @@ import { ViewStatisticsComponent } from 'src/app/shared/view-statistics/view-sta
   templateUrl: './item-search-result-grid-element.component.html',
   animations: [focusShadow],
   standalone: true,
-  imports: [TruncatableComponent, NgIf,NgFor, RouterLink, ThemedThumbnailComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule,NgClass,KwareTranslatePipe,NgStyle,ViewStatisticsComponent,PublictaionCountComponent,ThemedMetadataRepresentationListComponent,ThemedTypeBadgeComponent],
+  imports: [TruncatableComponent, NgIf,NgFor, RouterLink, ThemedThumbnailComponent,VersionsCounterComponent, ThemedBadgesComponent, TruncatablePartComponent, AsyncPipe, DatePipe, TranslateModule,NgClass,KwareTranslatePipe,NgStyle,ViewStatisticsComponent,PublictaionCountComponent,ThemedMetadataRepresentationListComponent,ThemedTypeBadgeComponent],
 })
 /**
  * The component for displaying a grid element for an item search result of the type Publication
@@ -55,7 +56,7 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
   dsoTitle: string;
 
 
-          //kware-edit
+        //kware-edit
  keywords = [];  //subject
  title: string;  // title
  authors: any;  //authors
@@ -67,8 +68,11 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
    arabicLang: boolean;
    englishLang: boolean;
 
+
    currentVersion:boolean;
    versionId;
+   groupId;
+   isSimpleView:boolean;
    special = ['zeroth','first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
    deca = ['twent', 'thirt', 'fort', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
    specialAr=['صفر','الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر', 'لثالث عشر', 'الرابع عشر', 'الخامس عشر', 'السادس عشر', 'السابع عشر', 'الثامن عشر', 'التاسع عشر'];
@@ -82,21 +86,27 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
     protected linkService: LinkService, //kware-edit
     public localeService: LocaleService, //kware-edit
   ) {
-    super(dsoNameService, truncatableService, bitstreamDataService,linkService,localeService);
+    super(dsoNameService, truncatableService, bitstreamDataService ,linkService,localeService);
   }
+
 
   ngOnInit(): void {
     super.ngOnInit();
     this.itemPageRoute = getItemPageRoute(this.dso);
-    this.dsoTitle = this.dsoNameService.getHitHighlights(this.object, this.dso);
-
-
+    this.dsoTitle = this.dsoNameService.getName(this.dso);
     this.linkService.resolveLink<Item>(this.dso, followLink('thumbnail')); //kware-edit
     this.linkService.resolveLink<Item>(this.dso, followLink('version')); //kware-edit
     this.currentVersion= document.URL.includes('/entities/publication/');
+    this.currentVersion= document.URL.includes('/entities/publication/');
+    this.currentVersion= document.URL.includes(`/entities/${this.dso.firstMetadataValue('dspace.entity.type').toLowerCase()}/`);
+    this.isSimpleView=document.URL.includes(`/entities/${this.dso.firstMetadataValue('dspace.entity.type').toLowerCase()}/`);
+
     if(this.currentVersion){
-     this.versionId = document.URL.split('/entities/publication/')[1];
+     this.versionId = document.URL.split(`/entities/${this.dso.firstMetadataValue('dspace.entity.type').toLowerCase()}/`)[1];
+     
     }
+
+
          // this.keywords=this.dso.allMetadataValues('dc.subject').slice(0,3); //kwar-edit
          let  arabic = /[\u0600-\u06FF]/;
          let english = /[a-zA-Z]/;
@@ -181,7 +191,7 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
     let newstr = '';
     if (this.localeService.getCurrentLanguageCode() === 'ar'){
       let regx = /;|,/gi;
-     newstr = str?.replace(regx, '،');
+     newstr = str.replace(regx, '،');
      return newstr;
 
     } else {
@@ -198,7 +208,7 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
   }
 
   removeMarkdown(text: string):string{
-    const mdRegx= text?.replace(/__|\*|\#|\-|\!|(?:\[([^\]]*)\]\([^)]*\))/gm, '');
+    const mdRegx= text.replace(/__|\*|\#|\-|\!|(?:\[([^\]]*)\]\([^)]*\))/gm, '');
     return mdRegx;
        }
 
@@ -216,7 +226,6 @@ export class ItemSearchResultGridElementComponent extends SearchResultGridElemen
        
          }
 
-         
          stringifyNumber(n) {
           if(this.localeAr){
             if (n < 20) return this.specialAr[n];

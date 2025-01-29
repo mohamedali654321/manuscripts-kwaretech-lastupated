@@ -38,8 +38,8 @@
 
                   <div class="text-muted">
 
-                      <span *ngIf="firstMetadataValue('era.startDate')" >{{'event.start.date' | translate}} {{firstMetadataValue('era.startDate')}} </span>
-                      <span *ngIf="firstMetadataValue('era.endDate')" > {{'event.end.date' | translate}} {{firstMetadataValue('era.endDate')}}</span>
+                      <span *ngIf="firstMetadataValue('era.startDate')" >{{'event.start.date' | translate}} {{firstMetadataValue('era.startDate') | kwareTranslate}} </span>
+                      <span *ngIf="firstMetadataValue('era.endDate')" > {{'event.end.date' | translate}} {{firstMetadataValue('era.endDate') | kwareTranslate}}</span>
                   </div>
                   
 

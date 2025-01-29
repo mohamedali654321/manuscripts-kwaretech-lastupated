@@ -36,7 +36,9 @@ export class SearchBrowseCategoriesComponent implements OnInit, OnDestroy {
   parentCategories = [];
   testCategories = [];
   matchCategories = [];
-  sortedCategories = ['All','Publication', 'Person', 'OrgUnit', 'Project', 'JournalIssue', 'JournalVolume', 'Journal', 'Place', 'Event', 'Era', 'Series','Subject'];
+  sortedCategories = ['Publication','Group', 'Person', 'Administration', 'OrgUnit', 'Project', 'JournalIssue', 'JournalVolume', 'Journal', 'Site', 'Place', 'Activity', 'Event', 'Era', 'Series'];
+
+  // sortedCategories = ['All','Publication', 'Person', 'OrgUnit', 'Project', 'JournalIssue', 'JournalVolume', 'Journal', 'Place', 'Event', 'Era', 'Series','Subject'];
   categoriesConfigs = {
     'Publication': { icon: 'fa-solid fa-book-open' },
     'Person': { icon: 'fa fa-users' },
