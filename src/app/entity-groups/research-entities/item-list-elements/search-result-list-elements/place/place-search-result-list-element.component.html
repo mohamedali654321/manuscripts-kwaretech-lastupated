@@ -22,7 +22,7 @@
             <div class="label_dage">
                 <span class="badge badge-info" style="background-color: #007d65  !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('place.type')" >{{firstMetadataValue('place.type') | kwareTranslate}}</span>
 
-                <!-- <ds-badges *ngIf="showLabel" [object]="dso" [context]="context"></ds-badges> -->
+                <ds-badges *ngIf="showLabel" [object]="dso" [context]="context"></ds-badges>
   <!-- <ds-access-status-badge [object]="dso" class="pl-1"></ds-access-status-badge> -->              </div>
             </div>
        

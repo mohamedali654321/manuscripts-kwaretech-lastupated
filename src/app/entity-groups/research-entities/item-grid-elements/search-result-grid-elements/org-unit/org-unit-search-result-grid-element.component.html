@@ -20,13 +20,13 @@
             </div>
         </span>
     <div class="card-body" [ngClass]="{'fixed-height':(isCollapsed() | async)}">
-      <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
       <div class="d-flex" style="justify-content: space-between;">
         <div class="label_dage" >
           <!-- <ds-badges *ngIf="showLabel" [object]="dso" [context]="context"></ds-badges> -->
   <!-- <ds-access-status-badge [object]="dso" class="pl-1"></ds-access-status-badge> -->
   <span class="badge badge-info" style="background-color: #007d65  !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('organization.type') || dso.hasMetadata('organization.child.type')" >{{dso.hasMetadata('organization.child.type') ? (firstMetadataValue('organization.child.type') | kwareTranslate):(firstMetadataValue('organization.type') | kwareTranslate)}}</span>
   <!-- <span class="badge badge-info" style="background-color: rgb(0 89 167)  !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('organization.child.type')" >{{firstMetadataValue('organization.child.type') | kwareTranslate}}</span> -->
+  <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
 
        </div>
        <div>

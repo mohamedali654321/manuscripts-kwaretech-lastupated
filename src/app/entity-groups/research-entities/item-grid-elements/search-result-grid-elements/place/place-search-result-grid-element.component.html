@@ -20,9 +20,10 @@
             </div>
         </span>
     <div class="card-body" [ngClass]="{'fixed-height':(isCollapsed() | async)}">
-      <!-- <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge> -->
+      
       <div class="d-flex" style="justify-content: space-between;">
         <div class="label_dage" >
+          <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
           <span class="badge badge-info" style="background-color: #007d65  !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('place.type')" >{{firstMetadataValue('place.type') | kwareTranslate}}</span>
 
           <!-- <ds-type-badge  *ngIf="showLabel" [object]="dso"></ds-type-badge>  -->
