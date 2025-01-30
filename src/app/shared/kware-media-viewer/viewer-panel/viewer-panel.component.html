@@ -8,6 +8,8 @@
       [fileformat]="fileformat"
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
+      [totalElements]="totalElements"
+      
     ></ds-kware-image-viewer>
     <ds-kware-pdf-viewer
       *ngIf="(fileMeta.canDownload | async) && fileformat === 'application/pdf'"
@@ -17,6 +19,8 @@
       [viewerPanelsStatus]="viewerPanelsStatus"
       [fileUrl]="fileUrl"
       [fileformat]="fileformat"
+      [startPage]="startPage"
+      [totalElements]="totalElements"
     ></ds-kware-pdf-viewer>
     <ds-kware-document-viewer
       *ngIf="
@@ -28,6 +32,7 @@
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
       [fileMeta]="fileMeta"
+      [totalElements]="totalElements"
     ></ds-kware-document-viewer>
     <ds-kware-video-player
       *ngIf="
@@ -40,6 +45,7 @@
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
       [locale]="localeCode"
+      [totalElements]="totalElements"
     ></ds-kware-video-player>
     <ds-unknown-file-format
       *ngIf="
@@ -55,6 +61,7 @@
       [fileMeta]="fileMeta"
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
+      [totalElements]="totalElements"
     >
     </ds-unknown-file-format>
     <ds-request-a-copy
@@ -63,6 +70,7 @@
       [fileMeta]="fileMeta"
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
+      [totalElements]="totalElements"
     >
     </ds-request-a-copy>
   </ng-container>
@@ -73,6 +81,7 @@
       [isMobile]="isMobile"
       [viewerPanelsStatus]="viewerPanelsStatus"
       [isEmptyList]="isEmptyList"
+      [totalElements]="totalElements"
     ></ds-loading-file>
   </ng-container>
 </ng-container>

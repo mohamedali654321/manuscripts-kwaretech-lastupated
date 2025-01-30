@@ -39,6 +39,8 @@ export class ViewerPanelComponent {
   @Input() isLoading: boolean;
   @Input() isEmptyList: boolean;
   @Input() closeViewer: () => void;
+  @Input() startPage: string;
+  @Input() totalElements: number;
 
   msFilesFormats = [
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

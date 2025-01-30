@@ -5,8 +5,8 @@
         <button class="viewer-toolbar-btn" (click)="setViewerPanelStatus()">
           <i
             [ngClass]="
-              viewerPanelsStatus.isFilesMenuOpen
-                ? 'fa fa-angle-double-right'
+              viewerPanelsStatus.isFilesMenuOpen === false && totalElements > 1
+                ? 'fa fa-bars fa-lg notification'
                 : 'fa fa-bars fa-lg'
             "
             aria-hidden="true"

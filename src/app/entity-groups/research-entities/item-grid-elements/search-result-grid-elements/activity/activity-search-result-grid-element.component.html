@@ -20,7 +20,7 @@
             </div>
         </span>
     <div class="card-body" [ngClass]="{'fixed-height':(isCollapsed() | async)}">
-      <!-- <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge> -->
+      <ds-type-badge *ngIf="showLabel" [object]="dso"></ds-type-badge>
       <div class="d-flex" style="justify-content: space-between;">
         <div class="label_dage" >
           <ds-badges *ngIf="showLabel" [object]="dso" [context]="context"></ds-badges>

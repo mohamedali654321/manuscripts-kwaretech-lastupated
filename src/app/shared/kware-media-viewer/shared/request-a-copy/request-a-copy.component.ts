@@ -21,7 +21,7 @@ export class RequestACopyComponent {
   @Input() isMobile: boolean;
   @Input() closeViewer: () => void;
   @Input() viewerPanelsStatus: any;
-
+  @Input() totalElements: number;
   constructor() {
   }
 

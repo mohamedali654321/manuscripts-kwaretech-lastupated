@@ -34,6 +34,7 @@ import { AsyncPipe, NgIf, NgStyle } from '@angular/common';
 })
 export class KwareMediaViewerComponent implements OnInit, OnDestroy {
   @Input() item: Item;
+  @Input() startPage: string;
   bitstreams$: BehaviorSubject<Bitstream[]>;
   isLoading: boolean;
   totalElements: number;
@@ -248,7 +249,7 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
       this.filesMenuWidth = '100%';
     } else {
       this.viewerService.setViewerPanelsStatus({
-        isFilesMenuOpen: true,
+        isFilesMenuOpen: false,
         isViewerPanelOpen: true,
       });
       this.filesMenuWidth = '25%';

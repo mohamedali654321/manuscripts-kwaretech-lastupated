@@ -24,7 +24,7 @@ export class UnknownFileFormatComponent {
   @Input() closeViewer: () => void;
   @Input() viewerPanelsStatus: any;
   @Input() enableFullScreen = false;
-
+  @Input() totalElements: number;
   constructor() {
   }
 

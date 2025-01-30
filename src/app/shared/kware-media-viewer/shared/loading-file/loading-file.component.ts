@@ -18,4 +18,5 @@ export class LoadingFileComponent {
   @Input() viewerPanelsStatus: any;
   @Input() enableFullScreen = false;
   @Input() isEmptyList: boolean;
+  @Input() totalElements: number;
 }

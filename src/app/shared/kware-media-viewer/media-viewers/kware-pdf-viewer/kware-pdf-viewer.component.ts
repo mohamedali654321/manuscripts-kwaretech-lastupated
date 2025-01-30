@@ -31,11 +31,12 @@ export class KwarePdfViewerComponent implements OnInit, OnChanges {
   @ViewChild('parentContainer') parentContainer: ElementRef;
   @ViewChild('viewerContainer') viewerContainer: ElementRef;
   @ViewChild('pdfJsViewer') pdfJsViewer: any;
-
+  @Input() startPage: string;
   @Input() fileMeta;
   @Input() isMobile: boolean;
   @Input() closeViewer: () => void;
   @Input() viewerPanelsStatus: any;
+  @Input() totalElements: number;
 
   @Input() fileUrl: string;
   @Input() fileformat: string;

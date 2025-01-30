@@ -34,7 +34,7 @@ export class KwareImageViewerComponent implements OnInit, OnChanges {
   @Input() viewerPanelsStatus: any;
   @Input() imageUrl: string;
   @Input() fileformat: string;
-
+  @Input() totalElements: number;
   baseImage: any;
   waterMarkImage: any;
 

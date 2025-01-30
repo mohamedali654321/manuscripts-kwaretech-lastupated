@@ -22,7 +22,7 @@ export class ViewerWrapperComponent {
   @Input() isMobile: boolean;
   @Input() viewerPanelsStatus: any;
   @Input() enableFullScreen = true;
-
+  @Input() totalElements: number;
   isFullScreen = false;
 
   constructor(

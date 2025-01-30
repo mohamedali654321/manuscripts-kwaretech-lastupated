@@ -374,10 +374,10 @@ ngOnInit(): void {
             label: 'query.filter.placeName',
             value: 'place.legalName',
           },
-          // {
-          //   label: 'query.filter.siteName',
-          //   value: 'place.childLegalName',
-          // },
+          {
+            label: 'query.filter.siteName',
+            value: 'place.childLegalName',
+          },
           {
             label: 'query.filter.addressCountry',
             value: 'place.country',
@@ -409,12 +409,12 @@ ngOnInit(): void {
           // },
           {
             label: 'query.filter.siteName',
+            value: 'place.childLegalName',
+          },
+          {
+            label: 'query.filter.placeName',
             value: 'place.legalName',
           },
-          // {
-          //   label: 'query.filter.placeName',
-          //   value: 'place.legalName',
-          // },
           {
             label: 'query.filter.addressCountry',
             value: 'place.country',
@@ -448,10 +448,10 @@ ngOnInit(): void {
             label: 'query.filter.organizationName',
             value: 'organization.legalName',
           },
-          // {
-          //   label: 'query.filter.administrationName',
-          //   value: 'organization.childLegalName',
-          // },
+          {
+            label: 'query.filter.administrationName',
+            value: 'organization.childLegalName',
+          },
           {
             label: 'query.filter.addressCountry',
             value: 'organization.address.addressCountry',
@@ -474,12 +474,12 @@ ngOnInit(): void {
           // },
           {
             label: 'query.filter.administrationName',
+            value: 'organization.childLegalName',
+          },
+          {
+            label: 'query.filter.organizationName',
             value: 'organization.legalName',
           },
-          // {
-          //   label: 'query.filter.organizationName',
-          //   value: 'organization.legalName',
-          // },
 
           {
             label: 'query.filter.addressCountry',
@@ -493,90 +493,16 @@ ngOnInit(): void {
             label: 'query.filter.college',
             value: 'dc.relation.college',
           },
-          // {
-          //   label: 'query.filter.specialization',
-          //   value: 'dc.relation.specialization',
-          // },
+          {
+            label: 'query.filter.specialization',
+            value: 'dc.relation.specialization',
+          },
           {
             label: 'query.filter.all',
             value: '',
           },
         ];
         break;
-        case this.filterFields === 'college':
-          this.queryFilters = [
-            // {
-            //   label: 'query.filter.all',
-            //   value: '',
-            // },
-            {
-              label: 'query.filter.collegeName',
-              value: 'organization.legalName',
-            },
-            // {
-            //   label: 'query.filter.organizationName',
-            //   value: 'organization.legalName',
-            // },
-  
-            {
-              label: 'query.filter.addressCountry',
-              value: 'organization.address.addressCountry',
-            },
-            {
-              label: 'query.filter.addressLocality',
-              value: 'organization.address.addressLocality',
-            },
-            // {
-            //   label: 'query.filter.college',
-            //   value: 'dc.relation.college',
-            // },
-            // {
-            //   label: 'query.filter.specialization',
-            //   value: 'dc.relation.specialization',
-            // },
-            {
-              label: 'query.filter.all',
-              value: '',
-            },
-          ];
-          break;
-        case this.filterFields === 'department':
-          this.queryFilters = [
-            // {
-            //   label: 'query.filter.all',
-            //   value: '',
-            // },
-            {
-              label: 'query.filter.departmentName',
-              value: 'organization.legalName',
-            },
-            // {
-            //   label: 'query.filter.organizationName',
-            //   value: 'organization.legalName',
-            // },
-  
-            {
-              label: 'query.filter.addressCountry',
-              value: 'organization.address.addressCountry',
-            },
-            {
-              label: 'query.filter.addressLocality',
-              value: 'organization.address.addressLocality',
-            },
-            {
-              label: 'query.filter.college',
-              value: 'dc.relation.college',
-            },
-            {
-              label: 'query.filter.specialization',
-              value: 'dc.relation.specialization',
-            },
-            {
-              label: 'query.filter.all',
-              value: '',
-            },
-          ];
-          break;
       case this.filterFields === 'Era':
         this.queryFilters = [
           // {
@@ -620,10 +546,10 @@ ngOnInit(): void {
             label: 'query.filter.eventTitle',
             value: 'event.title',
           },
-          // {
-          //   label: 'query.filter.activityTitle',
-          //   value: 'event.childTitle',
-          // },
+          {
+            label: 'query.filter.activityTitle',
+            value: 'event.childTitle',
+          },
 
           {
             label: 'query.filter.subject',
@@ -644,12 +570,12 @@ ngOnInit(): void {
           // },
           {
             label: 'query.filter.activityTitle',
+            value: 'event.childTitle',
+          },
+          {
+            label: 'query.filter.eventTitle',
             value: 'event.title',
           },
-          // {
-          //   label: 'query.filter.eventTitle',
-          //   value: 'event.title',
-          // },
 
           {
             label: 'query.filter.subject',

@@ -23,7 +23,7 @@ export class KwareVideoPlayerComponent implements OnInit, AfterViewInit, OnChang
   @Input() enableFullScreen = true;
   @Input() src = '';
   @Input() locale = 'ar';
-
+  @Input() totalElements: number;
   @ViewChild('videoCanvas') videoCanvas: ElementRef;
   @ViewChild('videoControlsContainer') videoControlsContainer: ElementRef;
 

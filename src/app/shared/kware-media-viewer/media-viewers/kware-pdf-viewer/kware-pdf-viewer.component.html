@@ -2,6 +2,8 @@
   [isMobile]="isMobile"
   [closeViewer]="closeViewer"
   [viewerPanelsStatus]="viewerPanelsStatus"
+  [totalElements]="totalElements"
+  
 >
   <div leftMenu>
     <button
@@ -90,6 +92,7 @@
         #pdfJsViewer
         [pdfSrc]="fileUrl"
         [locale]="localeCode"
+        [page]="startPage ? startPage : '1'"
         [openFile]="false"
         [fullScreen]="false"
         [download]="false"

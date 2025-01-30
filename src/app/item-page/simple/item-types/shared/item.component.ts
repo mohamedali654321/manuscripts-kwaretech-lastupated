@@ -43,6 +43,8 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import Cite from "citation-js";
 import { KwareCitationComponent } from 'src/app/shared/kware-citation/kware-citation.component';
+import { DSpaceObjectDataService } from 'src/app/core/data/dspace-object-data.service';
+import { getFirstSucceededRemoteDataPayload } from 'src/app/core/shared/operators';
 require("@citation-js/plugin-bibtex");
 require("@citation-js/plugin-ris");
 @Component({
@@ -139,7 +141,8 @@ export class ItemComponent implements OnInit {
     public store: Store<AppState>, //kware-edit
     protected linkService: LinkService, //kware-edit
     public localeService: LocaleService, //kware-edit
-    private accessStatusDataService: AccessStatusDataService,
+    protected dsoService: DSpaceObjectDataService,
+    protected accessStatusDataService: AccessStatusDataService,
     protected mediaViewerService:MediaViewerService,
     public hostWindowService: HostWindowService,
     protected modalService: NgbModal,
@@ -161,7 +164,21 @@ export class ItemComponent implements OnInit {
     );
   };
 
+  groupItem : Observable<DSpaceObject>
+  startPage:string ='1';
+  endPage;
+
   ngOnInit(): void {
+
+    if(hasValue(this.object.firstMetadataValue('relation.isGroupOfPublication'))){
+      this.groupItem= this.dsoService.findById(this.object.firstMetadataValue('relation.isGroupOfPublication')).pipe(getFirstSucceededRemoteDataPayload());
+     if(hasValue(this.object.firstMetadataValue('dc.format.pagenumber')) ){
+      this.startPage = this.object.firstMetadataValue('dc.format.pagenumber') ;
+  
+          }    else{
+            this.startPage='1';
+          }
+     }
   this.showAccessStatus = environment.item.showAccessStatuses;
 this.getAccessStatusOfItem(this.object.uuid).then(status=>{
   status.subscribe(res=>{

@@ -19,7 +19,7 @@ export class KwareDocumentViewerComponent implements OnChanges {
   @Input() fileMeta;
   @Input() fileformat: string;
   @Input() viewerPanelsStatus: any;
-
+  @Input() totalElements: number;
   @ViewChild('documentViewer') documentViewer: any;
 
   iframeURL?: SafeResourceUrl = undefined;

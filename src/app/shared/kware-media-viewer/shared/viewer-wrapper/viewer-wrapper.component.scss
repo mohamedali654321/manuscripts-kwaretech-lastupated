@@ -69,3 +69,33 @@
   height: 20px;
   border-left: 1px solid #ffffff;
 }
+
+
+::ng-deep html[dir="rtl"]{
+  .notification::after {
+    position: relative;
+    display: inline-block;
+    top: -8px;
+    right: -7px;
+    content: "";
+    background-color: #70DB55;
+    height: 11px;
+    width: 11px;
+    border-radius: 50%;
+  }
+}
+
+
+::ng-deep html[dir="ltr"]{
+  .notification::after {
+    position: relative;
+    display: inline-block;
+    top: -8px;
+    right: 7px;
+    content: "";
+    background-color: #70DB55;
+    height: 11px;
+    width: 11px;
+    border-radius: 50%;
+  }
+}
